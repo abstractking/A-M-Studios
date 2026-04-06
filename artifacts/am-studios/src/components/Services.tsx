@@ -19,7 +19,7 @@ const services = [
 
 const Services: React.FC = () => {
   return (
-    <section className={styles.servicesSection}>
+    <section id="services" className={styles.servicesSection}>
       <div className={styles.container}>
         <div className={styles.grid}>
           {services.map((service, index) => (

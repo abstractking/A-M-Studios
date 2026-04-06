@@ -39,6 +39,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
+            <li><button onClick={() => scrollToSection('services')}>Services</button></li>
             <li><button onClick={() => scrollToSection('projects')}>Projects</button></li>
             <li><button onClick={() => scrollToSection('about')}>About</button></li>
             <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>

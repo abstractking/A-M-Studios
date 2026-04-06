@@ -10,7 +10,7 @@ const steps = [
 
 const Process: React.FC = () => {
   return (
-    <section className={styles.processSection}>
+    <section id="process" className={styles.processSection}>
       <div className={styles.container}>
         <div className={styles.grid}>
           {steps.map((step, index) => (
