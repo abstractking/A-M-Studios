@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #020817;
+  --foreground: #f8fafc;
+  --accent: #0de0ca;
+  --accent-foreground: #020817;
+  --surface: #0a1628;
+  --surface-hover: #112240;
+  --border: #1e293b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Inter", sans-serif;
+  background: linear-gradient(to bottom, var(--background), var(--surface));
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}

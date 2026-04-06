@@ -16,6 +16,17 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### A&M Studios (`artifacts/am-studios`)
+- **Kind**: react-vite web app
+- **Preview path**: `/`
+- **Purpose**: One-page agency website for A&M Studios web design agency
+- **Stack**: React + Vite, CSS Modules, Framer Motion — NO Tailwind in component JSX
+- **Sections**: Navbar, Hero, Services, About, Portfolio, Process, Contact, Footer
+- **No backend**: Frontend only, contact form is UI-only
+- **Portfolio cards**: Clickable with placeholder `href="#"` links (open in new tab)
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages
