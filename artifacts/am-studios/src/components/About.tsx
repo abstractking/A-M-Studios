@@ -17,7 +17,7 @@ const About: React.FC = () => {
             <div className={styles.avatar}></div>
           </div>
           <p className={styles.text}>
-            At A&M Studios, we build websites that drive real results. Every project is crafted with purpose—combining clean design, performance, and usability.
+            At A&M Studios, we strive for effeciency, low cost, security & comfort . As you can see with our mock up projects. That they are crafted with a clean design, fast-performance, and warm usability.
           </p>
         </motion.div>
       </div>

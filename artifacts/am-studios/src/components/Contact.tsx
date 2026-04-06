@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.title}>Let's Build Something That Works</h2>
+          <h2 className={styles.title}>Let's Build Something That Works For You</h2>
           <p className={styles.subtitle}>Ready to start your next project? Drop us a line.</p>
 
           <form className={styles.form} onSubmit={handleSubmit}>

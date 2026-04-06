@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Websites That Don't Just Look Good — <span>They Perform</span>
+            Let's Get Creating! — <span> 2 Southern Artist ONE purpose </span>
           </motion.h1>
           
           <motion.p 
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            We design and build high-converting websites for businesses that want to stand out and grow.
+            We design and build, smooth & responsive websites for businesses that want sleek and modern designs.
           </motion.p>
           
           <motion.div 
