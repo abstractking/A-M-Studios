@@ -1,0 +1,101 @@
+Create a modern, responsive one-page website using React (Vite) for a web design agency called "A&M Studios".
+
+STYLE & DESIGN:
+- Dark, premium UI with a smooth gradient background (navy/black)
+- Accent color: teal/cyan glow
+- Clean, minimal, high-end aesthetic
+- Soft shadows, rounded corners, subtle borders
+- Fully responsive (mobile-first)
+- Smooth scrolling between sections
+
+ANIMATIONS:
+- Use Framer Motion
+- Fade-in animations on scroll for each section
+- Hover animations on buttons and cards (lift + glow)
+- Smooth transitions throughout the page
+
+STRUCTURE:
+
+1. NAVBAR
+- Left: "A&M Studios" (text logo)
+- Right: Links → Projects, About, Contact
+- CTA button: "Get a Quote"
+- Sticky navbar with slight background blur on scroll
+
+2. HERO SECTION
+- Large headline:
+  "Websites That Don’t Just Look Good — They Perform"
+- Subtext:
+  "We design and build high-converting websites for businesses that want to stand out and grow."
+- Two buttons:
+  - "View Projects"
+  - "Get a Quote"
+- Centered layout
+- Subtle animated gradient background
+- Scroll indicator at bottom
+
+3. SERVICES SECTION
+- 3 cards in a responsive grid:
+  - Web Design
+  - Web Development
+  - Performance Optimization
+- Each card includes:
+  - Title
+  - Short description (benefit-focused)
+- Cards should have hover effects (scale + glow)
+
+4. ABOUT SECTION
+- Short paragraph:
+  "At A&M Studios, we build websites that drive real results. Every project is crafted with purpose—combining clean design, performance, and usability."
+- Clean layout with good spacing
+- Optional avatar placeholder (circle)
+
+5. PORTFOLIO SECTION
+- Section title: "Featured Projects"
+- 3 project cards (placeholder content)
+- Each card includes:
+  - Image
+  - Title
+  - Short description
+- Hover effect: zoom image slightly + overlay
+- (No click functionality yet — placeholder only)
+
+6. PROCESS SECTION
+- 3 steps in a row:
+  - Discover
+  - Design
+  - Launch
+- Minimal icons or styled numbers
+- Simple clean layout
+
+7. CONTACT SECTION
+- Title: "Let’s Build Something That Works"
+- Form fields:
+  - Name
+  - Email
+  - Message
+- Button: "Request a Quote"
+- Centered layout
+- Clean, modern form styling
+
+8. FOOTER
+- "A&M Studios"
+- Copyright text
+- Minimal styling
+
+TECH REQUIREMENTS:
+- Use React with Vite
+- Use plain CSS or CSS modules (no Tailwind)
+- Use Flexbox/Grid for layout
+- Install and use Framer Motion for animations
+- Organize components into separate files:
+  Navbar, Hero, Services, About, Portfolio, Process, Contact, Footer
+
+EXTRA DETAILS:
+- Smooth scroll behavior when clicking navbar links
+- Use semantic HTML where possible
+- Keep code clean and well-structured
+- Add placeholder images using unsplash or similar
+
+GOAL:
+The site should feel like a premium web design agency focused on converting visitors into clients.
