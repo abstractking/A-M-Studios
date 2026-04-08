@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Let's Get Creating! — <span> Free Quotes & Mock Draft in 1 day! </span>
+            Let's Get Creating — <span>Free Quote & Mock Draft in 24 Hours</span>
           </motion.h1>
           
           <motion.p 
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            We design and build, smooth & responsive websites for businesses that want sleek and modern designs.
+            We design and build fast, responsive websites for businesses that want a clean, modern presence online.
           </motion.p>
           
           <motion.div 

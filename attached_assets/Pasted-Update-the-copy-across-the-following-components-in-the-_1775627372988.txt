@@ -1,0 +1,69 @@
+Update the copy across the following components in the A&M Studios React site.
+Keep all existing styles, CSS modules, animations, and layout exactly as-is.
+Only change the text content inside each component.
+
+--- Hero.tsx ---
+Change the headline to:
+  Line 1 (white): "Let's Get Creating —"
+  Line 2 (teal/accent span): "Free Quote & Mock Draft in 24 Hours"
+
+Change the subtitle paragraph to:
+  "We design and build fast, responsive websites for businesses 
+  that want a clean, modern presence online."
+
+--- Services.tsx ---
+Update the services array to:
+  {
+    title: "Web Design",
+    description: "Visuals crafted to reflect your brand and guide 
+    visitors toward action."
+  },
+  {
+    title: "Web Development",
+    description: "Scalable, responsive applications built with 
+    clean, modern engineering."
+  },
+  {
+    title: "Performance Optimization",
+    description: "Faster load times, smoother interactions, 
+    and better conversion rates."
+  }
+
+--- About.tsx ---
+Replace the paragraph text with:
+  "At A&M Studios, we believe great websites are built on three 
+  things: clean design, fast performance, and a process that 
+  actually feels easy. Every project we take on is treated with 
+  care — from the first conversation to launch day."
+
+--- Process.tsx ---
+Update the steps array to:
+  { number: "01", title: "Converse", desc: "We start by 
+  understanding your goals, your audience, and what success 
+  looks like for you." },
+  { number: "02", title: "Design", desc: "We bring your vision 
+  to life, blending your brand identity with our eye for clean, 
+  modern design." },
+  { number: "03", title: "Launch", desc: "After a thorough review 
+  and your approval, we go live — on time, on budget." }
+
+--- Contact.tsx ---
+Update the section title to:
+  "Let's Build Something That Works"
+
+Update the subtitle to:
+  "Ready to get started? Send us a message and we'll have a 
+  quote and mock draft back to you within 24 hours."
+
+--- Additional fixes ---
+1. In Process.module.css, check why the connector line between 
+   steps 02 and 03 is not rendering. Fix so the line spans 
+   consistently across all three steps.
+
+2. In About.tsx, ensure the paragraph has a max-width of 
+   around 640px and is centered, to improve line length 
+   and readability.
+
+Do not change any component structure, props, classNames, 
+animation configs, or CSS values other than the max-width 
+fix noted above.

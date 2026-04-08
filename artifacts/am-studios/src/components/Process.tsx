@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import styles from './Process.module.css';
 
 const steps = [
-  { number: "01", title: "Converse", desc: "Understanding your goals, needs and audience." },
-  { number: "02", title: "Design", desc: "Your two new favorite artist mixing our passion with your vision" },
-  { number: "03", title: "Launch", desc: "Test Stage & Phone/Video call review, Then we will be going live." }
+  { number: "01", title: "Converse", desc: "We start by understanding your goals, your audience, and what success looks like for you." },
+  { number: "02", title: "Design", desc: "We bring your vision to life, blending your brand identity with our eye for clean, modern design." },
+  { number: "03", title: "Launch", desc: "After a thorough review and your approval, we go live — on time, on budget." }
 ];
 
 const Process: React.FC = () => {
