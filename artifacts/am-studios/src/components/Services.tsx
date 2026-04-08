@@ -5,15 +5,15 @@ import styles from './Services.module.css';
 const services = [
   {
     title: "Web Design",
-    description: "Striking visual experiences that capture your brand's essence and engage your audience."
+    description: "Smooth, immersive visuals to naturally guide your users to action"
   },
   {
     title: "Web Development",
-    description: "Robust, scalable, and responsive applications built with modern engineering practices."
+    description: "Robust, scalable, and responsive applications built with modern AI engineering practices."
   },
   {
     title: "Performance Optimization",
-    description: "Lightning-fast load times and seamless interactions to boost conversion rates."
+    description: "Optimized for speed and seamless interaction—so your users stay engaged and convert."
   }
 ];
 

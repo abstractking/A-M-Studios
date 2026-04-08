@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Let's Get Creating! — <span> 2 Southern Artist ONE purpose </span>
+            Let's Get Creating! — <span> Free Quotes & Mock Draft in 1 day! </span>
           </motion.h1>
           
           <motion.p 

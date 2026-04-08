@@ -95,31 +95,6 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-.scrollIndicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.6;
-}
-
-.mouse {
-  width: 24px;
-  height: 36px;
-  border: 2px solid var(--foreground);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  padding-top: 6px;
-}
-
-.wheel {
-  width: 4px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 2px;
-}
-
 @media (max-width: 640px) {
   .actions {
     flex-direction: column;

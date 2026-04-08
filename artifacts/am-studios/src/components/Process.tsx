@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import styles from './Process.module.css';
 
 const steps = [
-  { number: "01", title: "Discover", desc: "Understanding your goals and audience." },
-  { number: "02", title: "Design", desc: "Crafting the visual language and UX." },
-  { number: "03", title: "Launch", desc: "Building, testing, and going live." }
+  { number: "01", title: "Converse", desc: "Understanding your goals, needs and audience." },
+  { number: "02", title: "Design", desc: "Your two new favorite artist mixing our passion with your vision" },
+  { number: "03", title: "Launch", desc: "Test Stage & Phone/Video call review, Then we will be going live." }
 ];
 
 const Process: React.FC = () => {

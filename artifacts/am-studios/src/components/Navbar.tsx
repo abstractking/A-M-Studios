@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <li><button onClick={() => scrollToSection('services')}>Services</button></li>
+            <li><button onClick={() => scrollToSection('about')}>About</button></li>
             <li><button onClick={() => scrollToSection('projects')}>Projects</button></li>
             <li><button onClick={() => scrollToSection('process')}>Process</button></li>
-            <li><button onClick={() => scrollToSection('about')}>About</button></li>
             <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>
           </motion.ul>
         </nav>
