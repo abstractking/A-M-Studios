@@ -1,0 +1,65 @@
+Update the existing React + Vite contact form to send submissions to Formspree and provide a premium user experience.
+
+CONTEXT:
+- The contact form UI is already built in a Contact component
+- Do NOT redesign the form
+- Only enhance functionality and UX
+- The app uses React, TypeScript, CSS Modules, and Framer Motion
+
+GOAL:
+Send form submissions directly to an email using Formspree, with smooth UX feedback and basic spam protection.
+
+IMPLEMENTATION REQUIREMENTS:
+
+1. FORM SUBMISSION (Formspree Integration)
+- Replace the current form submit handler with a fetch POST request to:
+  https://formspree.io/f/YOUR_FORM_ID
+- Send form data as JSON
+- Include headers:
+  Accept: application/json
+
+2. FORM STATE MANAGEMENT
+Use React state to manage:
+- loading (boolean)
+- success (boolean)
+- error (boolean)
+
+3. BUTTON UX (PREMIUM FEEL)
+- Default: "Request a Quote"
+- While submitting: "Sending..."
+- On success: "Message Sent ✓"
+- Disable button while loading
+- Smooth transition between states
+
+4. SUCCESS HANDLING
+- Do NOT redirect the page
+- Clear form fields after successful submission
+- Optionally display a subtle success message below the form
+
+5. ERROR HANDLING
+- If submission fails, show:
+  "Something went wrong. Please try again."
+- Keep user input intact on error
+
+6. SPAM PROTECTION (IMPORTANT)
+Add a hidden honeypot field:
+<input type="text" name="_gotcha" style={{ display: "none" }} />
+
+Ensure it is included in the submitted data.
+
+7. ACCESSIBILITY & CLEAN CODE
+- Keep semantic HTML
+- Ensure inputs still use proper name attributes (name, email, message)
+- Keep code clean and readable
+
+8. OPTIONAL ENHANCEMENTS (IF EASY)
+- Add a subtle fade animation for success state using Framer Motion
+- Slight button animation on state change
+
+CONSTRAINTS:
+- Do NOT add a backend server
+- Do NOT use external libraries beyond what is already installed
+- Keep everything client-side
+
+END RESULT:
+A smooth, professional contact form that sends emails via Formspree and gives clear, polished feedback to the user.
