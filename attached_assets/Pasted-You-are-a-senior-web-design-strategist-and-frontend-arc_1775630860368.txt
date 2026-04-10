@@ -1,0 +1,123 @@
+You are a senior web design strategist and frontend architect helping build portfolio-quality mock client websites for a web design agency called "A&M Studios".
+
+Your task is to CREATE A COMPLETE MASTER PLAN before writing any code.
+
+GOAL:
+We are creating 3 high-quality one-page websites for small businesses to be used as featured portfolio projects. These sites must look realistic, conversion-focused, and visually distinct.
+
+DO NOT WRITE CODE YET.
+
+-----------------------------------
+
+STEP 1: SELECT & DEFINE BUSINESSES
+
+Choose 3 small-to-medium business types that:
+- Represent different industries
+- Allow strong visual variety
+- Are commonly hired for web design
+
+For each business, define:
+- Business name (realistic)
+- Industry
+- Target audience
+- Primary goal (bookings, orders, leads, etc.)
+
+-----------------------------------
+
+STEP 2: BRAND & DESIGN DIRECTION
+
+For EACH business, define:
+
+- Color palette (specific tones)
+- Typography style (modern, elegant, bold, etc.)
+- Visual style (minimal, vibrant, luxury, etc.)
+- UI mood (clean, energetic, premium, etc.)
+
+Explain WHY each design choice fits the business.
+
+-----------------------------------
+
+STEP 3: PAGE STRUCTURE (STANDARDIZED SYSTEM)
+
+Create a reusable structure that ALL 3 websites will follow.
+
+Include:
+1. Navbar
+2. Hero
+3. Services
+4. About
+5. Visual Section (gallery/menu/showcase)
+6. Testimonials
+7. CTA Section
+8. Contact
+
+For EACH section:
+- Define its purpose
+- Describe what content it will include
+- Explain how it supports conversion
+
+-----------------------------------
+
+STEP 4: CONTENT STRATEGY
+
+For EACH business:
+- Define headline style
+- Tone of voice
+- Key messaging points
+- Example CTA phrases
+
+Avoid generic filler — make it feel like a real business.
+
+-----------------------------------
+
+STEP 5: UX & CONVERSION STRATEGY
+
+Explain:
+- How each page guides the user toward action
+- Where CTAs are placed and why
+- Trust-building elements (testimonials, visuals, etc.)
+
+-----------------------------------
+
+STEP 6: ANIMATION & INTERACTION PLAN
+
+Define:
+- Scroll animations (fade, slide, etc.)
+- Hover interactions
+- Micro-interactions (buttons, cards)
+
+Keep it modern, smooth, and not overdone.
+
+-----------------------------------
+
+STEP 7: COMPONENT & CODE STRUCTURE PLAN
+
+Define a clean React structure:
+- Shared components
+- Reusable layout system
+- Folder structure
+
+Ensure scalability and consistency across all 3 projects.
+
+-----------------------------------
+
+STEP 8: PORTFOLIO INTEGRATION PLAN
+
+Explain how these 3 sites will integrate into the A&M Studios main site:
+- Project naming
+- Routing structure (e.g. /projects/slug)
+- What users will see when they click a project
+- Transition/animation ideas
+
+-----------------------------------
+
+OUTPUT FORMAT:
+
+- Clear section headers
+- Structured and easy to follow
+- No code yet
+- Think like an agency building real client work
+
+GOAL:
+
+This plan should act as a blueprint for building all 3 websites efficiently and professionally, ensuring they look like real paid client projects.
