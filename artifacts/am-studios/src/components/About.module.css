@@ -1,117 +1,206 @@
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
+}
+@keyframes moonGlow {
+  0%, 100% { box-shadow: 0 0 18px rgba(180,79,247,0.4), 0 0 40px rgba(180,79,247,0.15); }
+  50%       { box-shadow: 0 0 30px rgba(255,45,155,0.5), 0 0 60px rgba(180,79,247,0.25); }
+}
+@keyframes moonFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 0.1; }
+}
+@keyframes nowPulse {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(255,45,155,0.6)); }
+  50%       { filter: drop-shadow(0 0 28px rgba(255,123,0,0.8)); }
+}
+
 .aboutSection {
-  padding: 8rem 0;
-  border-top: 1px solid rgba(160, 80, 255, 0.15);
-  border-bottom: 1px solid rgba(160, 80, 255, 0.15);
-  background: rgba(13, 0, 20, 0.6);
   position: relative;
+  background: #07001a;
   overflow: hidden;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.split {
+.panels {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border: 1px solid rgba(160, 80, 255, 0.2);
-  overflow: hidden;
-}
-
-.panel {
-  padding: 4rem 3rem;
+  width: 100%;
+  min-height: 380px;
   position: relative;
 }
 
+/* ── THEN PANEL ── */
 .panelThen {
-  background: rgba(20, 16, 10, 0.8);
-  border-right: 1px solid rgba(160, 80, 255, 0.2);
-  filter: saturate(0.3);
-}
-
-.panelNow {
-  background: rgba(13, 0, 28, 0.9);
+  background: rgba(5, 0, 15, 0.85);
+  border-right: 1px solid rgba(180, 79, 247, 0.25);
+  padding: 52px 48px;
   position: relative;
   overflow: hidden;
 }
 
-.panelNow::before {
-  content: '';
+.scanlines {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at top right, rgba(160, 80, 255, 0.12) 0%, transparent 60%);
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.012) 0px,
+    transparent 1px,
+    transparent 3px
+  );
   pointer-events: none;
 }
 
-.era {
-  font-family: var(--vt323);
-  font-size: 5rem;
+/* ── NOW PANEL ── */
+.panelNow {
+  background: linear-gradient(135deg, #0d0028 0%, #1a0040 50%, #0d001a 100%);
+  padding: 52px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gridFloor {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  right: -30px;
+  height: 55%;
+  background-image:
+    linear-gradient(rgba(180,79,247,0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180,79,247,0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(300px) rotateX(50deg);
+  transform-origin: bottom center;
+  animation: gridScroll 3s linear infinite;
+  z-index: 0;
+}
+
+.panelNowContent {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── CRESCENT MOON ── */
+.moonWrap {
+  position: absolute;
+  top: 28px;
+  right: 36px;
+  z-index: 3;
+  animation: moonFloat 5s ease-in-out infinite;
+}
+
+.moonOuter {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8d5ff 0%, #c084fc 40%, #b44ff7 100%);
+  animation: moonGlow 4s ease-in-out infinite;
+  position: relative;
+}
+
+.moonInner {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #1a0040;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #e8d5ff;
+}
+.star1 { width: 2px; height: 2px; top: 8px;  right: 80px;  animation: starTwinkle 2.1s ease-in-out infinite; }
+.star2 { width: 2px; height: 2px; top: 20px; right: 108px; animation: starTwinkle 3s   ease-in-out infinite 0.4s; }
+.star3 { width: 3px; height: 3px; top: 4px;  right: 120px; animation: starTwinkle 2.5s ease-in-out infinite 1s; }
+.star4 { width: 2px; height: 2px; top: 36px; right: 92px;  animation: starTwinkle 1.8s ease-in-out infinite 0.7s; }
+.star5 { width: 2px; height: 2px; top: 50px; right: 116px; animation: starTwinkle 2.8s ease-in-out infinite 0.2s; }
+
+/* ── DIVIDER ── */
+.panelDivider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, #b44ff7, #ff2d9b, transparent);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── LABELS ── */
+.labelThen {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: rgba(122, 95, 160, 0.4);
+  text-transform: uppercase;
   line-height: 1;
-  letter-spacing: 0.1em;
-  display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 28px;
 }
 
-.eraThen {
-  color: rgba(240, 232, 255, 0.25);
-}
-
-.eraNow {
-  color: var(--neon-pink);
-  text-shadow:
-    0 0 15px var(--neon-pink-glow),
-    0 0 30px rgba(255, 45, 155, 0.2);
-}
-
-.panelTitle {
-  font-family: var(--barlow);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.labelNow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: rgba(240, 232, 255, 0.5);
+  line-height: 1;
+  margin-bottom: 28px;
+  background: linear-gradient(90deg, #ff2d9b, #ff7b00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: nowPulse 3s ease-in-out infinite;
 }
 
-.panelTitleNow {
-  font-family: var(--barlow);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.panelSubtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent-glow);
+  margin-bottom: 16px;
+  color: #7a5fa0;
 }
 
-.panelText {
-  font-family: var(--dmsans);
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(240, 232, 255, 0.45);
+.panelSubtitleNow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: #00ffe5;
+  text-shadow: 0 0 10px rgba(0, 255, 229, 0.5);
 }
 
-.panelTextNow {
-  font-family: var(--dmsans);
-  font-size: 1rem;
+.panelBody {
+  font-size: 15px;
   line-height: 1.75;
-  color: var(--foreground-muted);
+  color: rgba(180, 160, 210, 0.7);
+  max-width: 360px;
+}
+
+.panelBodyNow {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(220, 200, 255, 0.85);
+  max-width: 360px;
 }
 
 @media (max-width: 768px) {
-  .split {
-    grid-template-columns: 1fr;
-  }
-
-  .panelThen {
-    border-right: none;
-    border-bottom: 1px solid rgba(160, 80, 255, 0.2);
-  }
-
-  .panel {
-    padding: 2.5rem 2rem;
-  }
+  .panels { grid-template-columns: 1fr; }
+  .panelDivider { display: none; }
+  .panelThen,
+  .panelNow { padding: 40px 28px; }
+  .labelThen,
+  .labelNow { font-size: 52px; }
 }
