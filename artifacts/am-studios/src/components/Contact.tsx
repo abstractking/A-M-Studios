@@ -45,7 +45,7 @@ const Contact: React.FC = () => {
     }
   };
 
-  const buttonLabel = loading ? 'Sending...' : success ? 'Message Sent ✓' : 'Request a Quote';
+  const buttonLabel = loading ? 'Transmitting...' : success ? 'Signal Received ✓' : 'Send Transmission';
 
   return (
     <section id="contact" className={styles.contactSection}>
@@ -57,94 +57,113 @@ const Contact: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.title}>Let's Build Something That Works</h2>
-          <p className={styles.subtitle}>Ready to get started? Send us a message and we'll have a quote and mock draft back to you within 24 hours.</p>
+          <span className={styles.sectionLabel}>// Contact</span>
+          <h2 className={styles.title}>Let's Build Something Real</h2>
+          <p className={styles.subtitle}>
+            Open a channel. We'll have a quote and mock draft back to you within 24 hours.
+          </p>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="_gotcha"
-              value={honeypot}
-              onChange={e => setHoneypot(e.target.value)}
-              style={{ display: 'none' }}
-              tabIndex={-1}
-              autoComplete="off"
-            />
+          <div className={styles.terminalWindow}>
+            <div className={styles.terminalBar}>
+              <span className={styles.dot}></span>
+              <span className={styles.dot}></span>
+              <span className={styles.dot}></span>
+              <span className={styles.terminalTitle}>contact@amstudios.io</span>
+            </div>
 
-            <div className={styles.inputGroup}>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                name="name"
-                placeholder="Name"
-                className={styles.input}
-                value={name}
-                onChange={e => setName(e.target.value)}
-                required
-                disabled={loading || success}
+                name="_gotcha"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
               />
-            </div>
-            <div className={styles.inputGroup}>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className={styles.input}
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                disabled={loading || success}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <textarea
-                name="message"
-                placeholder="Message"
-                className={styles.textarea}
-                rows={5}
-                value={message}
-                onChange={e => setMessage(e.target.value)}
-                required
-                disabled={loading || success}
-              />
-            </div>
 
-            <motion.button
-              type="submit"
-              className={`${styles.submitButton} ${success ? styles.successButton : ''}`}
-              disabled={loading || success}
-              whileHover={!loading && !success ? { scale: 1.02 } : {}}
-              whileTap={!loading && !success ? { scale: 0.98 } : {}}
-              animate={{ opacity: loading ? 0.75 : 1 }}
-              transition={{ duration: 0.2 }}
-            >
-              {buttonLabel}
-            </motion.button>
+              <div className={styles.form}>
+                <div className={styles.inputGroup}>
+                  <span className={styles.promptLabel}>&gt; name:</span>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="your name"
+                    className={styles.input}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    required
+                    disabled={loading || success}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.promptLabel}>&gt; email:</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    className={styles.input}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                    disabled={loading || success}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.promptLabel}>&gt; msg:</span>
+                  <textarea
+                    name="message"
+                    placeholder="tell us about your project..."
+                    className={styles.textarea}
+                    rows={4}
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                    required
+                    disabled={loading || success}
+                  />
+                </div>
+              </div>
 
-            <AnimatePresence>
-              {success && (
-                <motion.p
-                  className={styles.successMsg}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
+              <div className={styles.formActions}>
+                <motion.button
+                  type="submit"
+                  className={`${styles.submitButton} ${success ? styles.successButton : ''}`}
+                  disabled={loading || success}
+                  whileHover={!loading && !success ? { scale: 1.03 } : {}}
+                  whileTap={!loading && !success ? { scale: 0.97 } : {}}
+                  animate={{ opacity: loading ? 0.75 : 1 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  We received your message and will be in touch soon.
-                </motion.p>
-              )}
-              {error && (
-                <motion.p
-                  className={styles.errorMsg}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  Something went wrong. Please try again.
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </form>
+                  {buttonLabel}
+                </motion.button>
+              </div>
+
+              <AnimatePresence>
+                {success && (
+                  <motion.p
+                    className={styles.successMsg}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    &gt; Signal received. Expect contact within 24hrs.
+                  </motion.p>
+                )}
+                {error && (
+                  <motion.p
+                    className={styles.errorMsg}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    &gt; Transmission failed. Please retry.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </form>
+          </div>
         </motion.div>
       </div>
     </section>

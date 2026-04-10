@@ -1,14 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=VT323&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 :root {
-  --background: #020817;
-  --foreground: #f8fafc;
-  --accent: #0de0ca;
-  --accent-foreground: #020817;
-  --surface: #0a1628;
-  --surface-hover: #112240;
-  --border: #1e293b;
+  --background: #0d0014;
+  --surface: #130020;
+  --surface-hover: #1e0035;
+  --foreground: #f0e8ff;
+  --foreground-muted: rgba(240, 232, 255, 0.6);
+  --border: rgba(160, 80, 255, 0.2);
+  --accent: #00f5d4;
+  --accent-glow: rgba(0, 245, 212, 0.4);
+  --accent-foreground: #0d0014;
+  --neon-pink: #ff2d9b;
+  --neon-pink-glow: rgba(255, 45, 155, 0.4);
+  --neon-purple: #a050ff;
+  --neon-purple-glow: rgba(160, 80, 255, 0.4);
+  --chrome: #e8e0ff;
+  --vt323: 'VT323', monospace;
+  --barlow: 'Barlow Condensed', sans-serif;
+  --dmsans: 'DM Sans', sans-serif;
 }
 
 html {
@@ -18,14 +29,37 @@ html {
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, "Inter", sans-serif;
-  background: linear-gradient(to bottom, var(--background), var(--surface));
-  background-attachment: fixed;
+  font-family: var(--dmsans);
+  background-color: var(--background);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(160, 80, 255, 0.015) 2px,
+      rgba(160, 80, 255, 0.015) 4px
+    );
   min-height: 100vh;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
 }
 
 *, *::before, *::after {
@@ -48,4 +82,52 @@ button {
   cursor: pointer;
   font: inherit;
   color: inherit;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    text-shadow:
+      -2px 0 var(--neon-pink),
+      2px 0 var(--accent);
+    transform: translate(0);
+  }
+  20% {
+    text-shadow:
+      -4px 0 var(--neon-pink),
+      4px 0 var(--accent);
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    text-shadow:
+      2px 0 var(--neon-pink),
+      -2px 0 var(--accent);
+    transform: translate(2px, -1px);
+  }
+  60% {
+    text-shadow:
+      -2px 0 var(--neon-pink),
+      2px 0 var(--accent);
+    transform: translate(0);
+  }
+  80% {
+    text-shadow:
+      4px 0 var(--neon-pink),
+      -4px 0 var(--accent);
+    transform: translate(1px, 1px);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }

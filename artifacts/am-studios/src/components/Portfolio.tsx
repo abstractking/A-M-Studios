@@ -26,17 +26,28 @@ const projects = [
   }
 ];
 
+const glitchVariants = {
+  hidden: { opacity: 0, x: -20, skewX: -5 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    skewX: 0,
+    transition: { duration: 0.5, delay: i * 0.15, ease: "easeOut" }
+  })
+};
+
 const Portfolio: React.FC = () => {
   return (
     <section id="projects" className={styles.portfolioSection}>
       <div className={styles.container}>
-        <motion.div 
+        <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
+          <span className={styles.sectionLabel}>// Portfolio</span>
           <h2 className={styles.sectionTitle}>Featured Projects</h2>
         </motion.div>
 
@@ -48,13 +59,19 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.card}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              custom={index}
+              variants={glitchVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
             >
+              <div className={styles.vhsTop}>
+                <span className={styles.vhsLabel}>VHS-{String(project.id).padStart(3, '0')}</span>
+                <span className={styles.vhsRec}>● REC</span>
+              </div>
               <div className={styles.imageContainer}>
                 <img src={project.image} alt={project.title} className={styles.image} />
+                <div className={styles.scanlines}></div>
                 <div className={styles.overlay}>
                   <span className={styles.linkButton}>
                     View Project &rarr;
