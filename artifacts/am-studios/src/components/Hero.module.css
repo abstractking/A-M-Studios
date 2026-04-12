@@ -51,16 +51,82 @@
 }
 
 .eyebrow {
+  position: relative;
   font-family: var(--vt323);
   font-size: 1.25rem;
   letter-spacing: 0.3em;
   color: var(--neon-pink);
-  text-shadow: 0 0 10px var(--neon-pink-glow);
   text-transform: uppercase;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
+  animation: eyebrowFlicker 5s infinite;
+}
+
+.eyebrow::before {
+  content: '> A\0026M Studios // Online';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: var(--neon-pink);
+  pointer-events: none;
+  animation: eyebrowSlice 5s infinite;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+@keyframes eyebrowFlicker {
+  0%, 77%, 100% {
+    text-shadow: 0 0 10px var(--neon-pink-glow), 0 0 20px rgba(255,45,155,0.1);
+  }
+  78% {
+    text-shadow: 0 0 2px rgba(255,45,155,0.2);
+    opacity: 0.85;
+  }
+  79% {
+    text-shadow: 0 0 18px rgba(255,45,155,0.9), 2px 0 var(--accent);
+    opacity: 1;
+  }
+  80% {
+    text-shadow: 0 0 10px var(--neon-pink-glow);
+  }
+  83% {
+    text-shadow: -2px 0 var(--accent), 2px 0 rgba(255,107,0,0.6), 0 0 10px var(--neon-pink-glow);
+    transform: translateX(1px);
+  }
+  83.5% {
+    text-shadow: 0 0 10px var(--neon-pink-glow);
+    transform: none;
+  }
+  88% {
+    opacity: 0.9;
+    filter: brightness(1.5);
+  }
+  89% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+@keyframes eyebrowSlice {
+  0%, 78.5%, 100% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  79% {
+    clip-path: polygon(0 25%, 100% 25%, 100% 50%, 0 50%);
+    transform: translateX(-6px);
+    color: var(--accent);
+    opacity: 0.8;
+  }
+  79.5% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  83% {
+    clip-path: polygon(0 50%, 100% 50%, 100% 78%, 0 78%);
+    transform: translateX(6px);
+    color: #ff6b00;
+    opacity: 0.9;
+  }
+  83.5% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
 }
 
 .title {
