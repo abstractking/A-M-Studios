@@ -53,10 +53,11 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
-.bootPath { color: rgba(168, 85, 247, 0.5); }
-.bootChevron { color: rgba(168, 85, 247, 0.3); }
+.bootPath { color: rgba(168, 85, 247, 0.5); flex-shrink: 0; }
+.bootChevron { color: rgba(168, 85, 247, 0.3); flex-shrink: 0; }
 .bootText { color: rgba(57, 255, 20, 0.6); }
 
 /* ── MAIN ROW ── */
@@ -96,6 +97,7 @@
 .ctaBlock {
   flex: 1;
   max-width: 420px;
+  min-width: 0;
 }
 
 .ctaPrompt {
@@ -111,6 +113,7 @@
 .ctaPrompt::before {
   content: '$';
   color: #ff2d9b;
+  flex-shrink: 0;
 }
 
 .ctaHeadline {
@@ -156,6 +159,7 @@
   background: #39ff14;
   box-shadow: 0 0 5px #39ff14;
   animation: statusPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .statusCopy { color: rgba(168, 85, 247, 0.3); }
@@ -200,12 +204,35 @@
   margin-left: 2px;
 }
 
+/* ── MOBILE ── */
 @media (max-width: 768px) {
-  .voidMain { flex-direction: column; align-items: flex-start; }
+  .voidMain {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
   .ctaBlock { max-width: 100%; }
-  .voidStatus { text-align: left; }
-  .voidBottom { flex-direction: column; gap: 6px; }
-  .bootLine { padding: 10px 20px; }
-  .voidMain { padding: 24px 20px; }
-  .voidBottom { padding: 10px 20px; }
+
+  .ctaHeadline { font-size: 18px; }
+
+  .voidStatus {
+    text-align: left;
+    width: 100%;
+  }
+
+  .statusLine { justify-content: flex-start; }
+
+  .voidBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 20px;
+  }
+
+  .bootLine {
+    padding: 8px 20px;
+    font-size: 10px;
+  }
 }

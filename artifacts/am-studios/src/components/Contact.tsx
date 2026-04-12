@@ -58,7 +58,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <span className={styles.sectionLabel}>// Contact</span>
-          <h2 className={styles.title}>Let's Build Something Real</h2>
+          <h2 className={styles.title}>Let's Build</h2>
           <p className={styles.subtitle}>
             Open a channel. We'll have a quote and mock draft back to you within 24 hours.
           </p>

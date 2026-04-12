@@ -1,0 +1,110 @@
+Here's your mobile optimization prompt for Replit:
+
+---
+
+## Mobile Optimization Plan — A&M Studios (`artifacts/am-studios`)
+
+**CONTEXT:** This is a React + Vite site using CSS Modules and Framer Motion. NO Tailwind in component JSX. The existing breakpoints defined in the design system are: `480px`, `768px`, `968px`, `1200px`. The aesthetic is dark/cyberpunk — neon accents, glitch animations, terminal UI. All fixes must preserve this identity.
+
+---
+
+### TASK: Audit and fix all mobile responsiveness issues across every component
+
+Work through each file systematically. Do NOT change desktop styles — only add/fix mobile breakpoints inside each `.module.css` file.
+
+---
+
+### 1. `Navbar.module.css` / `Navbar.tsx`
+- The `nav` is hidden on mobile (`display: none` below 768px) but there is NO hamburger menu. **Add a mobile hamburger menu:**
+  - Add a `MenuBtn` button (visible only on mobile) that toggles a slide-down nav drawer
+  - Drawer should show nav links stacked vertically with the same neon styling
+  - Use Framer Motion `AnimatePresence` for the open/close animation
+  - Button should use three horizontal lines → X icon transition using CSS transforms
+- Fix logo size: reduce to `1.2rem` on mobile
+- Fix container padding: `0 1rem` on mobile
+
+---
+
+### 2. `Hero.module.css`
+- The perspective grid SVG and neon bracket SVG must be hidden or scaled on mobile (they overflow and cause horizontal scroll)
+- Fix `clamp` values on `.title` — ensure minimum is at least `2.2rem` on very small screens
+- Stack `.actions` buttons to full-width column on screens below `480px` (already partially done — verify it works)
+- Reduce `padding-top` from `80px` to `60px` on mobile
+- Ensure the eyebrow label doesn't overflow — add `overflow: hidden` and `text-overflow: ellipsis`
+
+---
+
+### 3. `Services.module.css`
+- Grid is already 1-col on mobile — verify this works
+- Reduce `padding` from `80px 48px` to `40px 16px` on mobile (`max-width: 768px`)
+- Card title font size: reduce from `28px` to `22px` on mobile
+- Ensure the `cardExe` terminal label doesn't overflow its card
+
+---
+
+### 4. `About.module.css`
+- Panels already stack to 1-col on mobile — verify
+- Reduce `labelThen` / `labelNow` from `52px` to `40px` on smaller screens below `480px`
+- Reduce panel padding to `28px 20px` on mobile
+- Hide the `.moonWrap` decoration on screens below `480px` to avoid layout issues
+
+---
+
+### 5. `Portfolio.module.css`
+- Grid goes 1-col below `768px` — verify this is correct
+- Reduce card `gap` to `1.5rem` on mobile
+- Fix `.vhsTop` label sizing — ensure `font-size` doesn't cause overflow
+- Add `padding: 0 1rem` to `.container` on mobile if not present
+
+---
+
+### 6. `Process.module.css`
+- Grid goes 1-col below `768px` — verify
+- Reduce section padding to `4rem 0 6rem` on mobile
+- Ensure the `.number` neon text (3.5rem) doesn't cause overflow — add `overflow: hidden` to `.step`
+- Reduce `.title` size for step headings on mobile
+
+---
+
+### 7. `Contact.module.css`
+- Container is already `max-width: 620px` — on mobile ensure it has `padding: 0 1rem`
+- The `.terminalWindow` should be full-width minus padding on mobile
+- Fix `.submitButton` — make it `width: 100%` on screens below `480px`
+- Reduce `.title` font size on mobile
+
+---
+
+### 8. `Footer.module.css`
+- `.voidMain` already wraps — verify `flex-direction: column` on mobile
+- Reduce `.ctaHeadline` font size from `22px` to `18px` on mobile
+- The `.bootLine` terminal text wraps awkwardly — add `overflow: hidden` and `white-space: nowrap` with ellipsis on very small screens, or allow it to wrap naturally with smaller font
+- Ensure `.voidBottom` stacks properly
+
+---
+
+### 9. Global: Prevent Horizontal Scroll
+In `index.css`, add to the `body` rule:
+```css
+overflow-x: hidden;
+max-width: 100vw;
+```
+Also add `box-sizing: border-box` globally if not present.
+
+---
+
+### 10. Test Each Breakpoint
+After all changes, verify layout at:
+- `320px` (iPhone SE)
+- `375px` (iPhone 14)
+- `480px`
+- `768px` (tablet)
+
+No section should have horizontal overflow. No text should clip outside its container. CTAs must be tappable (min `44px` touch target height).
+
+---
+
+**DO NOT:**
+- Change any desktop styles (above `768px`) unless explicitly listed
+- Remove animations — just ensure they don't cause layout shift on mobile
+- Switch to Tailwind
+- Change the dark cyberpunk color palette or fonts

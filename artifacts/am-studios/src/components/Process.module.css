@@ -48,6 +48,7 @@
   border: 1px solid rgba(160, 80, 255, 0.2);
   padding: 2rem;
   transition: border-color 0.3s ease;
+  overflow: hidden;
 }
 
 .step:hover {
@@ -76,6 +77,7 @@
   text-shadow: 0 0 12px var(--neon-pink-glow);
   display: block;
   margin-bottom: 0.75rem;
+  overflow: hidden;
 }
 
 .title {
@@ -96,8 +98,24 @@
 }
 
 @media (max-width: 768px) {
+  .processSection {
+    padding: 4rem 0 6rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .number {
+    font-size: 2.8rem;
   }
 }

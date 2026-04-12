@@ -196,11 +196,18 @@
   max-width: 360px;
 }
 
+/* ── MOBILE ── */
 @media (max-width: 768px) {
   .panels { grid-template-columns: 1fr; }
   .panelDivider { display: none; }
   .panelThen,
-  .panelNow { padding: 40px 28px; }
+  .panelNow { padding: 28px 20px; }
   .labelThen,
   .labelNow { font-size: 52px; }
+}
+
+@media (max-width: 480px) {
+  .labelThen,
+  .labelNow { font-size: 40px; }
+  .moonWrap { display: none; }
 }

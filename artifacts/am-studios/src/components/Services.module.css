@@ -144,6 +144,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 .dotR { background: #ff5f57; }
 .dotY { background: #febc2e; }
@@ -155,6 +156,9 @@
   font-size: 11px;
   color: #00ffe5;
   text-shadow: 0 0 6px rgba(0, 255, 229, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ── CARD BODY ── */
@@ -211,6 +215,7 @@
 }
 
 @media (max-width: 768px) {
-  .servicesSection { padding: 60px 24px; }
+  .servicesSection { padding: 40px 16px; }
   .grid { grid-template-columns: 1fr; }
+  .cardTitle { font-size: 22px; }
 }
