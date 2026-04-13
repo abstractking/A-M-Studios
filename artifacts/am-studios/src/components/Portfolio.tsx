@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Portfolio.module.css';
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "Ember Oak Burgers",
     description: "Brand site for a craft burger restaurant — bold identity, warm atmosphere, full menu experience",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
-    href: "https://ember-oak-burgers-6dvc.vercel.app/#"
+    href: "https://ember-oak-burgers-6dvc.vercel.app/"
   },
   {
     id: 2,
@@ -26,6 +33,43 @@ const projects = [
   }
 ];
 
+const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, onClick }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.25);
+
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setScale(entry.contentRect.width / 1440);
+    });
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapperRef} className={styles.iframeWrapper}>
+      <iframe
+        src={src}
+        title="Live preview"
+        scrolling="no"
+        style={{
+          width: '1440px',
+          height: '960px',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          pointerEvents: 'none',
+          border: 'none',
+          display: 'block',
+        }}
+      />
+      <div className={styles.scanlines} />
+      <div className={styles.overlay} onClick={onClick}>
+        <span className={styles.linkButton}>View Project &rarr;</span>
+      </div>
+    </div>
+  );
+};
+
 const glitchVariants = {
   hidden: { opacity: 0, x: -20, skewX: -5 },
   visible: (i: number) => ({
@@ -37,6 +81,10 @@ const glitchVariants = {
 };
 
 const Portfolio: React.FC = () => {
+  const handleOpen = (href: string) => {
+    if (href !== '#') window.open(href, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="projects" className={styles.portfolioSection}>
       <div className={styles.container}>
@@ -53,36 +101,39 @@ const Portfolio: React.FC = () => {
 
         <div className={styles.grid}>
           {projects.map((project, index) => (
-            <motion.a
+            <motion.div
               key={project.id}
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className={styles.card}
               custom={index}
               variants={glitchVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
+              onClick={() => handleOpen(project.href)}
+              style={{ cursor: project.href !== '#' ? 'pointer' : 'default' }}
             >
               <div className={styles.vhsTop}>
                 <span className={styles.vhsLabel}>VHS-{String(project.id).padStart(3, '0')}</span>
                 <span className={styles.vhsRec}>● REC</span>
               </div>
-              <div className={styles.imageContainer}>
-                <img src={project.image} alt={project.title} className={styles.image} />
-                <div className={styles.scanlines}></div>
-                <div className={styles.overlay}>
-                  <span className={styles.linkButton}>
-                    View Project &rarr;
-                  </span>
+
+              {project.image ? (
+                <div className={styles.imageContainer}>
+                  <img src={project.image} alt={project.title} className={styles.image} />
+                  <div className={styles.scanlines} />
+                  <div className={styles.overlay}>
+                    <span className={styles.linkButton}>View Project &rarr;</span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <IframePreview src={project.href} onClick={() => handleOpen(project.href)} />
+              )}
+
               <div className={styles.cardContent}>
                 <h3 className={styles.projectTitle}>{project.title}</h3>
                 <p className={styles.projectDescription}>{project.description}</p>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>
