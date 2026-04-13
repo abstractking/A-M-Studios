@@ -19,10 +19,9 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Lumina Beauty",
-    description: "E-commerce platform for premium cosmetics",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80",
-    href: "#"
+    title: "Serenity Nails",
+    description: "Elegant nail salon brand site — soft aesthetic, service menu, and seamless booking experience",
+    href: "https://serenity-nails-eight.vercel.app/"
   },
   {
     id: 3,
