@@ -30,11 +30,11 @@
 }
 
 .logo {
-  font-family: var(--barlow);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--foreground);
   cursor: pointer;
   text-shadow:
