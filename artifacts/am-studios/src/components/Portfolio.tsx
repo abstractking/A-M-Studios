@@ -5,10 +5,10 @@ import styles from './Portfolio.module.css';
 const projects = [
   {
     id: 1,
-    title: "Aura FinTech",
-    description: "Financial dashboard design & implementation",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    href: "#"
+    title: "Ember Oak Burgers",
+    description: "Brand site for a craft burger restaurant — bold identity, warm atmosphere, full menu experience",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+    href: "https://ember-oak-burgers-6dvc.vercel.app/#"
   },
   {
     id: 2,

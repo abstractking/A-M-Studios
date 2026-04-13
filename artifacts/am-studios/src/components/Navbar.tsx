@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
           transition={{ duration: 0.5 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          A&amp;M Studios
+          A&amp;M
         </motion.div>
 
         <nav className={styles.nav}>
