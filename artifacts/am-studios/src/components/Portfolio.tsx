@@ -25,10 +25,9 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Nova Architecture",
-    description: "Portfolio site for modern architectural firm",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-    href: "#"
+    title: "Precision Home Services",
+    description: "Professional home services company site — clean layout, service offerings, and easy contact flow",
+    href: "https://precision-home-services-precision-h-six.vercel.app/"
   }
 ];
 
