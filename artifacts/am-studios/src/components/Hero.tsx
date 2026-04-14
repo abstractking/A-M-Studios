@@ -144,8 +144,8 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className={styles.titleGlitch}>The Future</span>
-            <span className={styles.titleAccent}>Arrived Early.</span>
+            <span className={styles.titleGlitch}>MODERN. MEMORABLE. </span>
+            <span className={styles.titleAccent}>IMPRESSIONS THAT LAST.</span>
           </motion.h1>
 
           <motion.p
@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            We design and deploy high-velocity web experiences for businesses that refuse to be ignored. Free quote and mock draft within 24 hours.
+            You've built something special. We'll make sure the world sees it that way. Custom websites designed with care, delivered with pride."
           </motion.p>
 
           <motion.div
