@@ -154,8 +154,8 @@
     0 0 40px rgba(0, 245, 212, 0.2);
   font-size: clamp(1.4rem, 5vw, 4rem);
   letter-spacing: 0.05em;
-  animation: accentGlitch 7s infinite;
-  animation-delay: 3.5s;
+  animation: accentGlitch 8s infinite;
+  animation-delay: 2s;
 }
 
 .titleAccent::before {
@@ -166,9 +166,9 @@
   width: 100%;
   color: var(--neon-pink);
   pointer-events: none;
-  animation: accentSlicePink 7s infinite;
-  animation-delay: 3.5s;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  opacity: 0;
+  animation: accentEchoBelow 8s infinite;
+  animation-delay: 2s;
 }
 
 .titleAccent::after {
@@ -177,107 +177,125 @@
   top: 0;
   left: 0;
   width: 100%;
-  color: #ff6b00;
+  color: var(--accent);
   pointer-events: none;
-  animation: accentSliceOrange 7s infinite;
-  animation-delay: 3.5s;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  opacity: 0;
+  animation: accentEchoAbove 8s infinite;
+  animation-delay: 2s;
 }
 
 @keyframes accentGlitch {
-  0%, 69%, 100% {
-    text-shadow:
-      0 0 20px var(--accent-glow),
-      0 0 40px rgba(0, 245, 212, 0.2);
+  0%, 65%, 100% {
     transform: none;
+    filter: none;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(0, 245, 212, 0.2);
+  }
+  66% {
+    transform: scaleY(0.9) translateY(-4px);
+    filter: saturate(0.1) contrast(2) brightness(1.6);
+    letter-spacing: 0.14em;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  }
+  66.25% {
+    transform: scaleY(1.06) translateY(5px);
+    filter: saturate(0) contrast(3) brightness(0.5);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 20px var(--neon-pink-glow), 0 0 40px rgba(255, 45, 155, 0.4);
+  }
+  66.5% {
+    transform: scaleY(0.96) translateY(-2px);
+    filter: saturate(2) brightness(1.9);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(0, 245, 212, 0.5);
+  }
+  66.75% {
+    transform: none;
+    filter: none;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(0, 245, 212, 0.2);
   }
   70% {
-    text-shadow:
-      0 0 2px rgba(0, 245, 212, 0.2);
-    opacity: 0.85;
-    transform: translateX(2px);
-  }
-  70.3% {
-    text-shadow:
-      -3px 0 var(--neon-pink),
-      3px 0 #ff6b00,
-      0 0 20px var(--accent-glow);
-    transform: translateX(-2px);
-    opacity: 1;
-  }
-  70.6% {
-    text-shadow:
-      0 0 20px var(--accent-glow),
-      0 0 40px rgba(0, 245, 212, 0.2);
-    transform: none;
-  }
-  74% {
-    text-shadow:
-      2px 0 var(--neon-pink),
-      -2px 0 rgba(255, 107, 0, 0.8),
-      0 0 20px var(--accent-glow);
-    transform: translateX(1px) skewX(-2deg);
-    opacity: 0.9;
-  }
-  74.4% {
-    text-shadow:
-      0 0 30px var(--accent-glow),
-      0 0 60px rgba(0, 245, 212, 0.3);
-    transform: none;
-    opacity: 1;
-    filter: brightness(1.4);
-  }
-  74.8% {
-    text-shadow:
-      0 0 20px var(--accent-glow),
-      0 0 40px rgba(0, 245, 212, 0.2);
-    filter: brightness(1);
-  }
-}
-
-@keyframes accentSlicePink {
-  0%, 69.9%, 100% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-    transform: none;
-  }
-  70% {
-    clip-path: polygon(0 15%, 100% 15%, 100% 40%, 0 40%);
-    transform: translateX(-6px);
-    opacity: 0.9;
-  }
-  70.5% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  }
-  74% {
-    clip-path: polygon(0 55%, 100% 55%, 100% 80%, 0 80%);
-    transform: translateX(8px);
-    opacity: 0.85;
-  }
-  74.5% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  }
-}
-
-@keyframes accentSliceOrange {
-  0%, 70.1%, 100% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-    transform: none;
+    transform: scaleY(0.86) translateY(6px);
+    filter: saturate(0) brightness(2.2) contrast(4);
+    letter-spacing: 0.18em;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.9);
+    opacity: 0.55;
   }
   70.2% {
-    clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
-    transform: translateX(5px);
-    opacity: 0.85;
+    transform: scaleY(1.08) translateY(-5px);
+    filter: saturate(2.5) brightness(1.5);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 50px var(--accent-glow);
+    opacity: 1;
   }
-  70.7% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  70.4% {
+    transform: none;
+    filter: none;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(0, 245, 212, 0.2);
   }
-  74.1% {
-    clip-path: polygon(0 10%, 100% 10%, 100% 35%, 0 35%);
-    transform: translateX(-7px);
-    opacity: 0.9;
+}
+
+@keyframes accentEchoBelow {
+  0%, 65.9%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+    filter: blur(0px);
   }
-  74.6% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  66% {
+    transform: translateY(10px);
+    opacity: 0.55;
+    filter: blur(1px);
+  }
+  66.5% {
+    transform: translateY(16px);
+    opacity: 0.2;
+    filter: blur(3px);
+  }
+  66.75% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(12px);
+    opacity: 0.6;
+    filter: blur(0.5px);
+  }
+  70.4% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes accentEchoAbove {
+  0%, 66.1%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+    filter: blur(0px);
+  }
+  66.2% {
+    transform: translateY(-8px);
+    opacity: 0.5;
+    filter: blur(1px);
+  }
+  66.6% {
+    transform: translateY(-13px);
+    opacity: 0.2;
+    filter: blur(3px);
+  }
+  66.75% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  70.1% {
+    transform: translateY(-10px);
+    opacity: 0.55;
+    filter: blur(0.5px);
+  }
+  70.4% {
+    transform: translateY(0);
+    opacity: 0;
   }
 }
 
