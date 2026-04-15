@@ -119,3 +119,25 @@
     font-size: 2.8rem;
   }
 }
+
+@media (max-width: 480px) {
+  .processSection {
+    padding: 3rem 0 4rem;
+  }
+
+  .number {
+    font-size: 2.2rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .desc {
+    font-size: 0.875rem;
+  }
+
+  .step {
+    padding: 1.5rem 1.25rem;
+  }
+}

@@ -1,0 +1,460 @@
+# A&M Studios — Mobile Responsiveness Audit & Debug Report
+
+**Date:** April 15, 2026  
+**Repo:** `artifacts/am-studios`  
+**Critical Issues:** Hero Section & Process Section on mobile devices
+
+---
+
+## Executive Summary
+
+Based on the audit, there are **two primary mobile issues**:
+
+1. **Hero Section:** Overflow caused by SVG decorations (perspective grid + neon brackets) and text sizing issues on screens below 480px
+2. **Process Section:** Grid layout breaking, neon number text causing overflow, and connector lines not rendering between steps 02 and 03
+
+**Additional findings:** No mobile hamburger menu despite desktop nav being hidden on mobile (critical UX issue).
+
+---
+
+## Critical Issue #1: Hero Section Mobile Problems
+
+### Current Problems:
+
+#### A. Horizontal Scroll / Overflow
+- **Root Cause:** The `.perspectiveGrid` SVG and `.neonBorderSvg` SVG decorations are sized at `800px` width
+- On mobile viewports (320px-480px), these extend far beyond screen width
+- Creates horizontal scrolling and breaks mobile layout
+
+#### B. Text Sizing Issues
+- The `.title` uses `clamp()` values that may be too large on very small screens
+- `.eyebrow` label lacks overflow protection — can break layout with long text
+- Buttons stack correctly below 480px ✅ but need verification
+
+#### C. Spacing Issues
+- `padding-top: 80px` is excessive on mobile — pushes content too far down
+- Container padding needs tightening on mobile
+
+### Fixes Required in `Hero.module.css`:
+
+```css
+/* Add/Update mobile breakpoints */
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px; /* Reduce from 80px */
+  }
+
+  /* Hide overflow-causing SVGs */
+  .perspectiveGrid {
+    display: none;
+  }
+
+  .neonBorderSvg {
+    display: none;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  /* Protect eyebrow from overflow */
+  .eyebrow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 40px; /* Even less on very small screens */
+  }
+
+  /* Ensure buttons stack properly */
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    padding: 0.875rem 1.5rem; /* Slightly reduce padding */
+  }
+
+  .content {
+    gap: 1.5rem; /* Reduce vertical spacing */
+  }
+  
+  /* Ensure title doesn't get too large */
+  .title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
+    line-height: 1.1;
+  }
+  
+  .subtitle {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+}
+```
+
+---
+
+## Critical Issue #2: Process Section Mobile Problems
+
+### Current Problems:
+
+#### A. Grid Breaking on Mobile
+- Grid should collapse to 1 column below 768px
+- Need to verify this is working correctly
+
+#### B. Neon Number Overflow
+- The `.number` class uses `font-size: 3.5rem` with neon glow effects
+- On mobile, this large text can overflow its container
+- Causes horizontal scroll or clipped text
+
+#### C. Connector Line Not Rendering Between Steps 02-03
+- **Critical Bug:** Visual connector line between process steps is broken
+- Likely CSS Grid or pseudo-element positioning issue
+- Line may be rendering off-screen or with incorrect positioning
+
+#### D. Spacing Issues
+- Section padding is too large for mobile screens
+- Step titles need size reduction
+
+### Fixes Required in `Process.module.css`:
+
+```css
+/* Add/Update these mobile breakpoints */
+
+@media (max-width: 968px) {
+  .grid {
+    grid-template-columns: 1fr; /* Force 1 column on tablet and below */
+    gap: 3rem;
+  }
+  
+  /* Fix connector line for single column layout */
+  .step::after {
+    display: none; /* Hide horizontal connectors in stacked layout */
+  }
+  
+  /* Add vertical connector for mobile */
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 3rem;
+    background: linear-gradient(
+      to bottom,
+      var(--accent) 0%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .process {
+    padding: 4rem 0 6rem; /* Reduce from likely 6rem 0 8rem */
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .step {
+    padding: 2rem 1.5rem;
+    overflow: hidden; /* CRITICAL: Prevents number overflow */
+  }
+  
+  .number {
+    font-size: 2.5rem; /* Reduce from 3.5rem */
+  }
+  
+  .title {
+    font-size: 1.5rem; /* Reduce step heading size */
+  }
+}
+
+@media (max-width: 480px) {
+  .process {
+    padding: 3rem 0 4rem;
+  }
+  
+  .number {
+    font-size: 2rem; /* Further reduce on small screens */
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .desc {
+    font-size: 0.95rem;
+  }
+}
+```
+
+### Connector Line Fix (Detailed):
+
+The connector line issue likely stems from using `::after` pseudo-elements in a horizontal grid that switches to vertical on mobile. Here's the proper implementation:
+
+**Desktop (horizontal):**
+```css
+.step::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -50%; /* Extends to next step */
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+}
+
+.step:last-child::after {
+  display: none; /* No connector after last step */
+}
+```
+
+**Mobile (vertical):**
+```css
+@media (max-width: 968px) {
+  .step::after {
+    display: none; /* Remove horizontal connector */
+  }
+  
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 3rem;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+}
+```
+
+---
+
+## Additional Critical Issue: Missing Mobile Navigation
+
+### Problem:
+- Desktop navigation is hidden below 768px (`display: none`)
+- **No hamburger menu exists** — mobile users have no navigation
+- This is a **critical UX failure**
+
+### Fix Required in `Navbar.tsx` and `Navbar.module.css`:
+
+#### 1. Add Hamburger Menu Button (Already exists in CSS):
+The CSS shows `.menuBtn` is already defined but may not be implemented in JSX.
+
+**Verify `Navbar.tsx` has:**
+```tsx
+const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+// Inside return statement:
+<button 
+  className={styles.menuBtn}
+  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  aria-label="Toggle menu"
+>
+  <span className={mobileMenuOpen ? styles.iconClose : styles.iconHamburger}></span>
+</button>
+```
+
+#### 2. Add Mobile Menu Drawer:
+```tsx
+<AnimatePresence>
+  {mobileMenuOpen && (
+    <motion.div
+      className={styles.mobileNav}
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <ul>
+        <li><button onClick={() => handleNavClick('projects')}>Projects</button></li>
+        <li><button onClick={() => handleNavClick('about')}>About</button></li>
+        <li><button onClick={() => handleNavClick('contact')}>Contact</button></li>
+        <li>
+          <button 
+            className={styles.mobileCtaBtn}
+            onClick={() => handleNavClick('contact')}
+          >
+            Get a Quote
+          </button>
+        </li>
+      </ul>
+    </motion.div>
+  )}
+</AnimatePresence>
+```
+
+---
+
+## Global Mobile Fixes Required
+
+### In `index.css` (or global styles):
+
+```css
+/* Prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+```
+
+---
+
+## Testing Checklist
+
+After implementing fixes, test at these breakpoints:
+
+- [ ] **320px** (iPhone SE) — Smallest common viewport
+- [ ] **375px** (iPhone 14 Pro) — Common iPhone size
+- [ ] **414px** (iPhone 14 Pro Max) — Large phone
+- [ ] **480px** — Breakpoint boundary
+- [ ] **768px** (iPad portrait) — Tablet breakpoint
+- [ ] **820px** (iPad Air) — Medium tablet
+
+### What to Verify:
+
+**Hero Section:**
+- [ ] No horizontal scroll
+- [ ] SVG decorations hidden
+- [ ] Text readable and properly sized
+- [ ] Buttons stack vertically and are full-width
+- [ ] CTA buttons meet 44px minimum tap target height
+- [ ] Eyebrow label doesn't overflow
+
+**Process Section:**
+- [ ] Grid collapses to 1 column
+- [ ] Neon numbers don't overflow
+- [ ] Connector lines render between ALL steps (or switch to vertical connectors)
+- [ ] Text is readable at all sizes
+- [ ] Spacing feels balanced
+
+**Navigation:**
+- [ ] Hamburger menu appears and functions
+- [ ] Menu items are tappable (44px min height)
+- [ ] Menu closes when item clicked
+- [ ] Menu animates smoothly
+
+**Global:**
+- [ ] No horizontal scroll on any section
+- [ ] All tap targets minimum 44px × 44px
+- [ ] Text doesn't clip or overflow
+- [ ] Images scale properly
+
+---
+
+## Summary of Files to Modify
+
+1. **`Hero.module.css`** — Add mobile breakpoints, hide SVGs, adjust spacing
+2. **`Process.module.css`** — Fix grid, reduce number size, fix connector lines
+3. **`Navbar.tsx`** — Add hamburger menu state and mobile drawer (if missing)
+4. **`Navbar.module.css`** — Already has mobile styles, verify they're being used
+5. **`index.css`** — Add global overflow prevention
+
+---
+
+## Priority Order
+
+1. **HIGH:** Fix Hero SVG overflow (immediate UX impact)
+2. **HIGH:** Implement mobile navigation (critical accessibility)
+3. **HIGH:** Fix Process connector lines (visual bug)
+4. **MEDIUM:** Optimize text sizing across all sections
+5. **MEDIUM:** Add global overflow prevention
+6. **LOW:** Fine-tune spacing and polish
+
+---
+
+## Additional Recommendations
+
+### Performance:
+- Consider lazy-loading the SVG decorations on desktop only
+- Optimize SVG paths to reduce file size
+
+### Accessibility:
+- Ensure all interactive elements have proper focus states
+- Verify color contrast meets WCAG AA standards (especially neon text on dark backgrounds)
+- Add `aria-label` to hamburger menu button
+- Ensure mobile menu can be keyboard-navigated
+
+### User Experience:
+- Add smooth scroll behavior when clicking nav links
+- Consider adding a loading state for smoother page transitions
+- Test on real devices, not just browser dev tools
+
+---
+
+## Code Snippets for Quick Implementation
+
+### Quick Fix: Prevent All Mobile Overflow
+
+Add this to the top of each section's CSS module:
+
+```css
+.sectionName {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+```
+
+### Quick Fix: Responsive Font Sizing Pattern
+
+Use this pattern for all heading elements:
+
+```css
+.heading {
+  font-size: clamp(1.5rem, 5vw + 1rem, 3rem);
+}
+```
+
+### Quick Fix: Safe Button Sizing
+
+Ensure all buttons meet tap target requirements:
+
+```css
+.button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.75rem 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .button {
+    width: 100%;
+  }
+}
+```
+
+---
+
+## Next Steps
+
+1. **Review** this report with the development team
+2. **Implement** fixes in priority order
+3. **Test** on multiple devices and browsers
+4. **Document** any additional issues found during testing
+5. **Deploy** to staging for final review
+6. **Monitor** analytics for mobile user behavior post-fix
+
+---
+
+**End of Report**
+
+For questions or clarifications, reference the mobile optimization prompt and design differentiation rules in the project documentation.
