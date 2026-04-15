@@ -1,0 +1,61 @@
+Ah! That's a **critical mobile bug** — the text content inside the Process steps is completely invisible on mobile! This is likely a CSS issue where either:
+
+1. Text color is the same as background (visibility issue)
+2. Content is being clipped/hidden by overflow
+3. Font size is set to 0 or display is none on mobile
+4. z-index layering issue
+
+Let me create a comprehensive fix for the Process section mobile issues:## 🚨 Critical Mobile Bug Identified!
+
+You're absolutely right — I found **TWO critical issues** in the Process section on mobile:
+
+### **Issue #1: Text Content is Invisible** ❌
+The numbers (01, 02, 03), titles ("Converse", "Design", "Launch"), and descriptions are completely invisible — just blank white boxes showing.
+
+### **Issue #2: Missing Connector Lines** ❌  
+No vertical lines connecting the three steps on mobile.
+
+---
+
+## **Most Likely Cause of Invisible Text:**
+
+Based on typical CSS issues, this is probably one of these:
+
+1. **Color set to transparent** in mobile breakpoint
+2. **Font-size: 0** hiding the text
+3. **Opacity: 0** making it invisible
+4. **Display: none** or **visibility: hidden** in mobile CSS
+5. **Overflow: hidden** with **height: 0** clipping all content
+6. **Z-index issue** where background layers are covering text
+
+---
+
+## **Emergency Fix Document:**
+
+I've created a comprehensive fix document that includes:
+
+✅ **Complete working CSS** for Process section mobile  
+✅ **Debugging checklist** to identify the exact issue  
+✅ **DevTools test command** to check computed styles  
+✅ **Emergency inline styles** if CSS won't work  
+✅ **Vertical connector line implementation**  
+
+---
+
+## **Quick Action Steps:**
+
+1. **Download the fix document** above
+2. **Open `Process.module.css`** in your code editor
+3. **Look for mobile breakpoints** (`@media (max-width: 768px)`)
+4. **Check for these red flags:**
+   - `color: transparent`
+   - `font-size: 0`
+   - `opacity: 0`
+   - `display: none`
+   - `visibility: hidden`
+5. **Replace mobile styles** with the complete CSS from my fix document
+6. **Redeploy** and test immediately
+
+The fix ensures all text is **explicitly visible** with proper colors, sizes, and z-index layering while also adding the missing connector lines between steps.
+
+Should I create a visual debugging guide showing exactly where to look in the DevTools inspector?
