@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import styles from './Process.module.css';
 
@@ -25,19 +25,18 @@ const steps = [
 
 interface TypewriterTextProps {
   text: string;
+  trigger: boolean;
   delay?: number;
   speed?: number;
   className?: string;
 }
 
-const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0, speed = 30, className }) => {
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+const TypewriterText: React.FC<TypewriterTextProps> = ({ text, trigger, delay = 0, speed = 30, className }) => {
   const [displayed, setDisplayed] = useState('');
-  const hasStarted = React.useRef(false);
+  const hasStarted = useRef(false);
 
   React.useEffect(() => {
-    if (!isInView || hasStarted.current) return;
+    if (!trigger || hasStarted.current) return;
     hasStarted.current = true;
 
     let i = 0;
@@ -58,12 +57,12 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0, speed 
       clearTimeout(timerId);
       if (intervalId) clearInterval(intervalId);
     };
-  }, [isInView, text, delay, speed]);
+  }, [trigger, text, delay, speed]);
 
   return (
-    <span ref={ref} className={className}>
+    <span className={className}>
       {displayed}
-      {isInView && displayed.length < text.length && (
+      {trigger && displayed.length < text.length && (
         <span style={{
           display: 'inline-block',
           width: '0.55em',
@@ -76,6 +75,53 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0, speed 
         }} />
       )}
     </span>
+  );
+};
+
+interface StepCardProps {
+  step: typeof steps[number];
+  index: number;
+}
+
+const StepCard: React.FC<StepCardProps> = ({ step, index }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.step}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <div className={styles.terminalHeader}>
+        <span className={styles.prompt}>&gt;</span>{' '}
+        <TypewriterText
+          text={step.cmd}
+          trigger={isInView}
+          delay={index * 100 + 200}
+          speed={35}
+        />
+      </div>
+      <span className={styles.number}>{step.number}</span>
+      <h3 className={styles.title}>
+        <TypewriterText
+          text={step.title}
+          trigger={isInView}
+          delay={index * 100 + step.cmd.length * 35 + 300}
+          speed={60}
+        />
+      </h3>
+      <p className={styles.desc}>
+        <TypewriterText
+          text={step.desc}
+          trigger={isInView}
+          delay={index * 100 + step.cmd.length * 35 + step.title.length * 60 + 400}
+          speed={12}
+        />
+      </p>
+    </motion.div>
   );
 };
 
@@ -96,38 +142,7 @@ const Process: React.FC = () => {
 
         <div className={styles.grid}>
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              className={styles.step}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-            >
-              <div className={styles.terminalHeader}>
-                <span className={styles.prompt}>&gt;</span>{' '}
-                <TypewriterText
-                  text={step.cmd}
-                  delay={index * 200 + 300}
-                  speed={35}
-                />
-              </div>
-              <span className={styles.number}>{step.number}</span>
-              <h3 className={styles.title}>
-                <TypewriterText
-                  text={step.title}
-                  delay={index * 200 + step.cmd.length * 35 + 400}
-                  speed={60}
-                />
-              </h3>
-              <p className={styles.desc}>
-                <TypewriterText
-                  text={step.desc}
-                  delay={index * 200 + step.cmd.length * 35 + step.title.length * 60 + 500}
-                  speed={12}
-                />
-              </p>
-            </motion.div>
+            <StepCard key={index} step={step} index={index} />
           ))}
         </div>
       </div>
