@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            You've built something special. We'll make sure the world sees it that way. Custom websites designed with care, delivered with pride."
+            You've built something special. We'll make sure the world sees it that way. Custom websites designed with care, delivered with pride.
           </motion.p>
 
           <motion.div
