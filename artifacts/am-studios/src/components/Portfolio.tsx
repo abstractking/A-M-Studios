@@ -28,6 +28,30 @@ const projects: Project[] = [
     title: "Precision Home Services",
     description: "Professional home services company site — clean layout, service offerings, and easy contact flow",
     href: "https://precision-home-services-precision-h-six.vercel.app/"
+  },
+  {
+    id: 4,
+    title: "Luminary Coffee Co.",
+    description: "Minimalist café brand site — clean typography, rotating seasonal menu, and an ambient brand story",
+    href: "#"
+  },
+  {
+    id: 5,
+    title: "Atlas Fitness",
+    description: "High-energy gym site — bold layout, class schedule, trainer profiles, and membership CTA",
+    href: "#"
+  },
+  {
+    id: 6,
+    title: "Bloom & Co. Florals",
+    description: "Soft, editorial florist site — gallery-forward design, seasonal arrangements, and event inquiry form",
+    href: "#"
+  },
+  {
+    id: 7,
+    title: "Ironclad Legal Group",
+    description: "Authoritative law firm site — structured layout, practice areas, attorney bios, and consultation booking",
+    href: "#"
   }
 ];
 
