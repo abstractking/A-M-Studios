@@ -58,7 +58,6 @@ const projects: Project[] = [
 const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, onClick }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.25);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     if (!wrapperRef.current) return;
@@ -69,24 +68,6 @@ const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, on
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  if (isMobile) {
-    return (
-      <div className={styles.iframeWrapper} onClick={onClick}>
-        <div className={styles.mobilePreview}>
-          <div className={styles.overlayMobile}>
-            <span className={styles.linkButton}>View Project &rarr;</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div ref={wrapperRef} className={styles.iframeWrapper}>
