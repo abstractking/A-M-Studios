@@ -80,7 +80,7 @@ const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, on
     return (
       <div className={styles.iframeWrapper} onClick={onClick}>
         <div className={styles.mobilePreview}>
-          <div className={styles.overlay}>
+          <div className={styles.overlayMobile}>
             <span className={styles.linkButton}>View Project &rarr;</span>
           </div>
         </div>
