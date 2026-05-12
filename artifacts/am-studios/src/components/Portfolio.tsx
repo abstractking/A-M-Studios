@@ -48,9 +48,9 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: "Ironclad Legal Group",
-    description: "Authoritative law firm site — structured layout, practice areas, attorney bios, and consultation booking",
-    href: "#"
+    title: "Ink-Heal-Buddy",
+    description: "A draft dashboard site for a potential tattoo shop client, that automates timed check ups for after tattoo skin care, with their artist",
+    href: "https://ink-heal-buddy.vercel.app/"
   }
 ];
 
