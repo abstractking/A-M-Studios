@@ -115,9 +115,10 @@ const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, on
 };
 
 const CardWrapper: React.FC<{ 
-  children: React.ReactNode; 
+  children: React.ReactNode;
+  className?: string;
   onVisible: () => void;
-}> = ({ children, onVisible }) => {
+}> = ({ children, className, onVisible }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -140,8 +141,8 @@ const CardWrapper: React.FC<{
     return () => observer.disconnect();
   }, [isVisible, onVisible]);
 
-  return (
-    <div ref={cardRef}>
+    return (
+    <div ref={cardRef} className={className}>
       {isVisible ? children : <div className={styles.cardPlaceholder} />}
     </div>
   );
@@ -161,10 +162,9 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div className={styles.grid}>
-          {projects.map((project, index) => (
-            <CardWrapper key={project.id} onVisible={() => console.log(`Card ${project.id} visible`)}>
+                    {projects.map((project) => (
+            <CardWrapper key={project.id} className={styles.card} onVisible={() => console.log(`Card ${project.id} visible`)}>
               <div
-                className={styles.card}
                 onClick={() => handleOpen(project.href)}
                 style={{ cursor: project.href !== '#' ? 'pointer' : 'default' }}
               >
