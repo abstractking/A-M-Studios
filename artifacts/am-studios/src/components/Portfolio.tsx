@@ -31,21 +31,21 @@ const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Luminary Coffee Co.",
-    description: "Minimalist café brand site — clean typography, rotating seasonal menu, and an ambient brand story",
-    href: "#"
+    title: "VeCollab Vechain APP",
+    description: "A one of a kind crypto project, set to reward artist for creating and collectors for collecting. Revenunue sharing and other economic features built to automate the future of the art economy inside of NFT contracts. Project has been delayed due to denied funding from VeChain Higher Ups.",
+    href: "https://www.vecollab.art/"
   },
   {
     id: 5,
-    title: "Atlas Fitness",
-    description: "High-energy gym site — bold layout, class schedule, trainer profiles, and membership CTA",
-    href: "#"
+    title: "VeCollab Art Marketplace ",
+    description: "Same premise of the Vecollab APP, although this project is scaled out to become its' own marketplace.",
+    href: "https://vec-artt.vercel.app/"
   },
   {
     id: 6,
-    title: "Bloom & Co. Florals",
-    description: "Soft, editorial florist site — gallery-forward design, seasonal arrangements, and event inquiry form",
-    href: "#"
+    title: "NSG ARMA COMMUNITY SERVER",
+    description: "Currently in progress",
+    href: "https://nephilimsecurity.vercel.app/"
   },
   {
     id: 7,
@@ -58,15 +58,35 @@ const projects: Project[] = [
 const IframePreview: React.FC<{ src: string; onClick: () => void }> = ({ src, onClick }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.25);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     if (!wrapperRef.current) return;
     const observer = new ResizeObserver(([entry]) => {
-      setScale(entry.contentRect.width / 1440);
+      const newScale = Math.max(0.15, Math.min(entry.contentRect.width / 1440, 0.35));
+      setScale(newScale);
     });
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className={styles.iframeWrapper} onClick={onClick}>
+        <div className={styles.mobilePreview}>
+          <div className={styles.overlay}>
+            <span className={styles.linkButton}>View Project &rarr;</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={wrapperRef} className={styles.iframeWrapper}>
